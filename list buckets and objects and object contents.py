@@ -52,3 +52,12 @@ for objects in files['Contents']:
     objectlist.append(res)
 for i in objectlist:
     client.download_file(Bucket = 'bucket-name',Key = i,Filename = i)
+          
+# Download objects from s3 using client and resource combo:
+import boto3
+s3 = boto3.resource('s3')
+client = boto3.client('s3')
+bucket = s3.Bucket('godisgreat97sid')
+files = bucket.objects.all()
+for file in files:
+    client.download_file('godisgreat97sid',file.key,file.key)
