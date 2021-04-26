@@ -41,3 +41,14 @@ for object in bucket.objects.filter(Prefix = 'starting of target object name'):
     contents = object.get()['Body'].read().decode(encoding = "utf-8", errors = "ignore")
 for line in contents.splitlines():
     print(line)
+          
+# Download objects from s3 using client only
+import boto3 
+objectlist = []
+client = boto3.client('s3')
+files = client.list_objects_v2(Bucket = 'bucket-name')
+for objects in files['Contents']:
+    res = objects['Key']
+    objectlist.append(res)
+for i in objectlist:
+    client.download_file(Bucket = 'bucket-name',Key = i,Filename = i)
