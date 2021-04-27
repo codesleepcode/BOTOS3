@@ -22,8 +22,8 @@ for object in response['Contents']:
 import boto3
 client = boto3.resource('s3')
 bucket = client.Bucket('bucket-name')
-for objects in bucket.objects.all():
-    print(objects.key)
+for obj in bucket.objects.all():
+    print(obj.key)
 
 # Using client to display the contents inside a particular file in s3 (recommend to use resource if not sure of exact filename):
 import boto3
